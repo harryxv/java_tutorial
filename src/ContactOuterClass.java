@@ -41,11 +41,11 @@ public class ContactOuterClass {
     }
 
     public static void main(String[] args) {
-        //how to instantiate an instance inner class
+        //instantiate an inner class
         ContactOuterClass outerClass = new ContactOuterClass("John");
         ContactOuterClass.Address address = outerClass.new Address("glenway circle", "toronto");
 
-        //how to instantiate an static inner class
+        //instantiate a static inner class
         ContactOuterClass.Region region = new ContactOuterClass.Region("ON");
     }
 }
