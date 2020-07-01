@@ -1,11 +1,11 @@
-/**
+package src; /**
  * illustrate feature of Object class, the super class for all classes
  */
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ObjectSuperClass {
+public class ObjectClass {
     private String name;
 
     public String getName() {
@@ -16,7 +16,7 @@ public class ObjectSuperClass {
         this.name = name;
     }
 
-    public ObjectSuperClass(String name) {
+    public ObjectClass(String name) {
         this.name = name;
     }
 
@@ -41,12 +41,12 @@ public class ObjectSuperClass {
     }
 
     public static void main(String[] args) {
-        ObjectSuperClass obj1 = new ObjectSuperClass("obj1");
-        ObjectSuperClass obj2 = new ObjectSuperClass("obj2");
+        src.ObjectClass obj1 = new src.ObjectClass("obj1");
+        src.ObjectClass obj2 = new src.ObjectClass("obj2");
         System.out.println("obj1.equals(obj2) ==" + obj1.equals(obj2));
         System.out.println("obj1.hashCode() ==" + obj1.hashCode());
         System.out.println("obj2.hashCode() ==" + obj2.hashCode());
-        Set<ObjectSuperClass> objSet = new HashSet<>(2);
+        Set<src.ObjectClass> objSet = new HashSet<>(2);
         objSet.add(obj1);
         objSet.add(obj2);
 
