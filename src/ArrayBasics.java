@@ -11,6 +11,20 @@ import java.util.List;
  * Collections.min() api, make your code concise. with Comparator or use Comparable (natural order int the collection)
  */
 public class ArrayBasics {
+    static class Person implements Comparable<Person> {
+        String name;
+        int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public int compareTo(Person o) {
+            return this.age - o.age;
+        }
+    }
     public static void main(String[] args) {
         Integer[] a = (Integer[]) Array.newInstance(Integer.class, 10);
         Arrays.fill(a, 10);
@@ -30,25 +44,10 @@ public class ArrayBasics {
         Person minP = Collections.min(people, (p1, p2) -> {
             return p1.age - p2.age;
         });
-        System.out.println("min Person= " + minP.name);
+        System.out.println("min model.Person= " + minP.name);
 
         Person maxP = Collections.max(people);
-        System.out.println("max Person= " + maxP.name);
+        System.out.println("max model.Person= " + maxP.name);
 
-    }
-
-    static class Person implements Comparable<Person> {
-        String name;
-        int age;
-
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        @Override
-        public int compareTo(Person o) {
-            return this.age - o.age;
-        }
     }
 }

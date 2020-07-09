@@ -1,0 +1,2 @@
+this file contains testing content, used to test IO stream, file io operations.
+say hello to Java APIs, there are so much to learn!

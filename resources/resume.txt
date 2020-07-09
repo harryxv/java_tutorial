@@ -1,0 +1,1 @@
+I successfully built online-quiz application starts from scratch with a one-paper of requirement. It’s intended to provide a training tool for AODA. After launch, this applications’ high-performance and user-friendly interface makes it widely used by various similar training courses. It’s being used by over 3000 employees.
