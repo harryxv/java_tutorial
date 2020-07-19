@@ -1,4 +1,4 @@
-package algorithms.common;
+package algorithms.common.String;
 
 public class FindLongestCommonPrefix {
     public String findLongestCommonPrefix(String s1, String s2) {

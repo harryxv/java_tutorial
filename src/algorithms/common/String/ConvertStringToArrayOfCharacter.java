@@ -1,4 +1,4 @@
-package algorithms.common;
+package algorithms.common.String;
 
 import java.util.Arrays;
 
@@ -10,9 +10,11 @@ import java.util.Arrays;
 public class ConvertStringToArrayOfCharacter {
     public static void main(String[] args) {
         String s = "this is a string";
-        char[] arr = s.toCharArray();
-        System.out.println(Arrays.toString(arr));
 
+        //get char array from string
+        char[] arr = s.toCharArray();
+
+        //get string from array, using String constructor
         String s1 = new String(arr);
         System.out.println(s1);
     }

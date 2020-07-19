@@ -8,9 +8,6 @@ class JavaStream {
 
     static void printIntStream() {
         IntStream intStream = IntStream.range(0, 10);
-        /*
-         * intStream.forEach((e)->{ System.out.println(e); });
-         */
         intStream.forEach(System.out::println);
     }
 }

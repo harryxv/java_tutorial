@@ -32,6 +32,9 @@ public class Person implements Comparable<Person> {
         return this.name.compareTo(o.name);
     }
 
+    public Person() {
+    }
+
     public Person(String name, Sex gender, int age) {
         this.name = name;
         this.gender = gender;
