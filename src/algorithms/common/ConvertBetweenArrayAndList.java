@@ -15,6 +15,7 @@ public class ConvertBetweenArrayAndList {
     public static void main(String[] args) {
         String[] keywords = { "anacell", "betacellular", "cetracular", "deltacellular", "eurocell" };
         List<String> keywordList = Arrays.asList(keywords);
+        Set<String> strings = new HashSet(keywordList);
         keywordList.forEach(System.out::println);
 
         String[] newKeywords= keywordList.toArray(new String[keywordList.size()]);

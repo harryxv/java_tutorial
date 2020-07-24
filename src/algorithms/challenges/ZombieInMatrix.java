@@ -30,17 +30,6 @@ import java.util.*;
  */
 public class ZombieInMatrix {
 
-    public static void main(String[] args) {
-        List<List<Integer>> grid = new ArrayList<>();
-        grid.add(Arrays.asList(0, 1, 1, 0, 1));
-        grid.add(Arrays.asList(0, 1, 0, 1, 0));
-        grid.add(Arrays.asList(0, 0, 0, 0, 1));
-        grid.add(Arrays.asList(0, 1, 0, 0, 0));
-        ZombieInMatrix zombieInMatrix = new ZombieInMatrix();
-        int minHours = zombieInMatrix.minHours(4, 5, grid);
-        System.out.println("minHours =" + minHours);
-    }
-
     class Position {
         int row;
         int column;
@@ -92,5 +81,16 @@ public class ZombieInMatrix {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        List<List<Integer>> grid = new ArrayList<>();
+        grid.add(Arrays.asList(0, 1, 1, 0, 1));
+        grid.add(Arrays.asList(0, 1, 0, 1, 0));
+        grid.add(Arrays.asList(0, 0, 0, 0, 1));
+        grid.add(Arrays.asList(0, 1, 0, 0, 0));
+        ZombieInMatrix zombieInMatrix = new ZombieInMatrix();
+        int minHours = zombieInMatrix.minHours(4, 5, grid);
+        System.out.println("minHours =" + minHours);
     }
 }

@@ -2,6 +2,15 @@ package algorithms.challenges;
 
 import java.util.*;
 
+/**
+ * given String[][] pairs =
+ * given         pairs.add(new Pair("i1", "i2"));
+ *         pairs.add(new Pair("i3", "i4"));
+ *         pairs.add(new Pair("i5", "i6"));
+ *         pairs.add(new Pair("i3", "i6"));
+ */
+
+
 public class LongestRecommendation {
     Map<String, List<String>> adj = new HashMap<>();
     Map<String, Boolean> marked = new HashMap<>();
@@ -27,16 +36,7 @@ public class LongestRecommendation {
         adj.get(p.second).add(p.first);
     }
 
-    public static void main(String[] args) {
-        LongestRecommendation graph = new LongestRecommendation();
-        List<Pair> pairs = new ArrayList<>();
-        pairs.add(new Pair("i1", "i2"));
-        pairs.add(new Pair("i3", "i4"));
-        pairs.add(new Pair("i5", "i6"));
-        pairs.add(new Pair("i3", "i6"));
-        List<String> list = graph.findLongestRecommendation(pairs);
-        System.out.println(list);
-    }
+
 
     private List<String> findLongestRecommendation(List<Pair> pairs) {
         //build Graph: distribute each pair to the adj
@@ -47,6 +47,8 @@ public class LongestRecommendation {
         System.out.println(adj);
         //run DFS to create components
         List<String> vertices = new ArrayList<>(adj.keySet());
+
+
         vertices.forEach(e -> marked.put(e, Boolean.FALSE));
         for (String root : vertices) {
             if (!isMarked(root)) {
@@ -71,5 +73,16 @@ public class LongestRecommendation {
         for (String v : adj.get(node)) {
             dfs(v, root);
         }
+    }
+    public static void main(String[] args) {
+        LongestRecommendation graph = new LongestRecommendation();
+        List<Pair> pairs = new ArrayList<>();
+        pairs.add(new Pair("i1", "i2"));
+        pairs.add(new Pair("i3", "i4"));
+        pairs.add(new Pair("i5", "i6"));
+        pairs.add(new Pair("i3", "i6"));
+
+        List<String> list = graph.findLongestRecommendation(pairs);
+        System.out.println(list);
     }
 }

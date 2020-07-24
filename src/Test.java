@@ -1,17 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 public class Test {
     public static void main(String[] args) {
-        List a = new ArrayList();
-        a.add("this");
-        a.add(2);
-        System.out.print(a);
-
-        String s = "01234";
-        System.out.print(new Exception());
-
+//test Stack interation
+//        for (Character character : stack) {
+//            System.out.println(character);
+//        }
+//        stack.stream().forEach(System.out::println);
+//        Iterator<Character> iter = stack.iterator();
+//        while (iter.hasNext()) {
+//            System.out.println(iter.next());
+//        }
 
     }
-
 }
