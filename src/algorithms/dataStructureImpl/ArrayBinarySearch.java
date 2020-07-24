@@ -1,4 +1,4 @@
-package algorithms.common;
+package algorithms.dataStructureImpl;
 
 import java.util.Arrays;
 
@@ -9,6 +9,7 @@ public class ArrayBinarySearch {
      * return position if found
      * -(insertion_postion) -1: to avoid 0 confusion.
      * or return
+     *
      * @param arr
      * @param key
      * @return

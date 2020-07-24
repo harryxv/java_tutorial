@@ -1,4 +1,4 @@
-package algorithms.common;
+package algorithms.utils;
 
 import java.util.*;
 
@@ -59,23 +59,23 @@ public class StringUtils {
      */
     private static boolean isPalindrome(String s) {
         int len = s.length();
-        for (int l = 0, r = len - 1; l < r; l++, r--) {
-            if (s.charAt(l) != s.charAt(r)) return false;
+        for (int lo = 0, hi = len - 1; lo < hi; lo++, hi--) {
+            if (s.charAt(lo) != s.charAt(hi)) return false;
         }
         return true;
     }
 
     /**
      * @param s
-     * @param firstIndex
-     * @param lastIndex
+     * @param lo
+     * @param hi
      * @return
      */
-    private static boolean isPalindrome(String s, int firstIndex, int lastIndex) {
-        boolean isOdd = (lastIndex - firstIndex + 1) % 2 == 1;
-        int midIndex = firstIndex + (lastIndex - firstIndex) / 2; //(pointing to the left side of middles, or the middle)
-        for (int left = isOdd ? midIndex - 1 : midIndex, right = midIndex + 1;
-             left >= firstIndex && right <= lastIndex;
+    private static boolean isPalindrome(String s, int lo, int hi) {
+        boolean isOdd = (hi - lo + 1) % 2 == 1;
+        int mid = lo + (hi - lo) / 2; //(pointing to the left side of middles, or the middle)
+        for (int left = isOdd ? mid - 1 : mid, right = mid + 1;
+             left >= lo && right <= hi;
              left--, right++) {
             if (s.charAt(left) != s.charAt(right)) return false;
         }
@@ -84,17 +84,17 @@ public class StringUtils {
 
     /**
      * @param s
-     * @param firstIndex
-     * @param lastIndex
+     * @param lo
+     * @param hi
      * @return
      */
-    private static String palindromeSubstring(String s, int firstIndex, int lastIndex) {
+    private static String palindromeSubstring(String s, int lo, int hi) {
         boolean isPalindrome = true;
-        boolean isOdd = (lastIndex - firstIndex + 1) % 2 == 1;
-        int midIndex = firstIndex + (lastIndex - firstIndex) / 2; //(pointing to the left side of middles, or the middle)
-        int left = isOdd ? midIndex - 1 : midIndex, right = midIndex + 1;
+        boolean isOdd = (hi - lo + 1) % 2 == 1;
+        int mid = lo + (hi - lo) / 2; //(pointing to the left side of middles, or the middle)
+        int left = isOdd ? mid - 1 : mid, right = mid + 1;
         for (;
-             left >= firstIndex && right <= lastIndex;
+             left >= lo && right <= hi;
              left--, right++) {
             //System.out.println(s.charAt(left) + " == " + s.charAt(right));
             if (s.charAt(left) != s.charAt(right)) {
@@ -102,7 +102,7 @@ public class StringUtils {
                 break;
             }
         }
-        return isPalindrome ? s.substring(firstIndex, lastIndex + 1) : s.substring(left + 1, right);
+        return isPalindrome ? s.substring(lo, hi + 1) : s.substring(left + 1, right);
     }
 
     public static List<String> getAllPalindromeSubstrings(String s) {
@@ -118,7 +118,37 @@ public class StringUtils {
     }
 
     public static List<String> getAllPermutations(String s) {
-        return new ArrayList<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.add(s);
+        String source;
+        int qSize = queue.size();
+
+        for (int i = 0; i < s.length(); i++) {
+            int newQSize = 0;
+            for (int k = 0; k < qSize; k++) {
+                source = queue.poll();
+
+                for (int j = i; j < s.length(); j++) {
+                    queue.add(swap(source, i, j));
+                    newQSize++;
+                }
+
+            }
+            qSize = newQSize;
+        }
+        return new ArrayList<>(queue);
+    }
+
+
+    public static String swap(String s, int first, int second) {
+        if (first == second) return s;
+        char[] chars = s.toCharArray();
+
+        char tmp = chars[first];
+        chars[first] = chars[second];
+        chars[second] = tmp;
+
+        return new String(chars);
     }
 
     public static void main(String[] args) {

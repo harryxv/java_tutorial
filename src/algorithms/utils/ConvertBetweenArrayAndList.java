@@ -1,4 +1,4 @@
-package algorithms.common;
+package algorithms.utils;
 
 import java.util.*;
 //bridge methods between array-based and collection-based APIs.
