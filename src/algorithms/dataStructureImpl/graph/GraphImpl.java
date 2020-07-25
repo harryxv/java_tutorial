@@ -14,6 +14,7 @@ public class GraphImpl<E> {
             if (!adj.containsKey(v)) adj.put(v, new LinkedList<>());
         }
         adj.get(first).add(second);
+        //if undirected graph, add line below.
         adj.get(second).add(first);
     }
 }

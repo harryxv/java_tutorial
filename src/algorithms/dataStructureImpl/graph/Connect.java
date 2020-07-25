@@ -1,14 +1,17 @@
 package algorithms.dataStructureImpl.graph;
 
-import algorithms.challenges.LongestRecommendation;
 
 import java.util.*;
 
 /**
  * given a graph and two vertices, check whether they are connected
+ * Solution: start from one vertex, use DFS to check whether the other one is connected.
+ * the auxiliary Map, marked whether a vertex is visited during DFS process.
  * <p>
  * this algorithm check single activity problem
  */
+
+//DFS implementation
 public class Connect {
     private GraphImpl<String> graph;
     private Map<String, Boolean> marked = new HashMap<>();
@@ -17,16 +20,25 @@ public class Connect {
         this.graph = graph;
     }
 
-    private void depthFirstSearch(GraphImpl<String> graph, String v) {
-        marked.put(v, true);
-        graph.getAdj(v).forEach(e -> {
-            if (!marked.containsKey(e)) depthFirstSearch(graph, e);
-        });
+    public boolean isVisited(String v) {
+        return marked.containsKey(v);
     }
 
-    public boolean isConnected(String v1, String v2) {
-        depthFirstSearch(graph, v1);
-        return marked.containsKey(v2);
+    private boolean depthFirstSearch(GraphImpl<String> graph, String v, String dest) {
+        System.out.println("Visit " + v);
+        marked.put(v, true);
+        if (v.equalsIgnoreCase(dest)) return true;
+        for (String s : graph.getAdj(v)) {
+            if (!isVisited(s)) {
+                boolean result = depthFirstSearch(graph, s, dest);
+                if (result == true) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isConnected(String source, String dest) {
+        return depthFirstSearch(graph, source, dest);
     }
 
     public static void main(String[] args) {
