@@ -43,10 +43,21 @@ public class Connect {
 
     public static void main(String[] args) {
         GraphImpl<String> G = new GraphImpl<>();
-        G.addEdge("i1", "i2");
-        G.addEdge("i3", "i4");
-        G.addEdge("i5", "i6");
-        G.addEdge("i3", "i6");
+        String[][] pairs = {
+                {"i1", "i2"},
+                {"i3", "i4"},
+                {"i5", "i6"},
+                {"i3", "i6"}
+        };
+//        G.addEdge("i1", "i2");
+//        G.addEdge("i3", "i4");
+//        G.addEdge("i5", "i6");
+//        G.addEdge("i3", "i6");
+        for (String[] pair : pairs) {
+            for(int i=1;i<pair.length;i++){
+               G.addEdge(pair[0],pair[i]);
+            }
+        }
         Connect connect = new Connect(G);
         boolean connected = connect.isConnected("i3", "i5");
         System.out.println("i3 and i5 is connected ?= " + connected);

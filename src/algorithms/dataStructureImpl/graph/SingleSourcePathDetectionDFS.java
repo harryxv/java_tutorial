@@ -48,13 +48,23 @@ public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<S
 
     public static void main(String[] args) {
         GraphImpl<String> graph = new GraphImpl<>();
-        graph.addEdge("i1", "i2");
-        graph.addEdge("i3", "i4");
-        graph.addEdge("i5", "i6");
-        graph.addEdge("i3", "i6");
+        String[][] pairs = {
+                {"i1", "i2"},
+                {"i3", "i4"},
+                {"i5", "i6"},
+                {"i3", "i6"}
+        };
         String source = "i3";
+
+        for (String[] pair : pairs) {
+            for (int i = 1; i < pair.length; i++) {
+                graph.addEdge(pair[0], pair[i]);
+            }
+        }
+
         SingleSourcePathDetectionDFS graphProcessor = new SingleSourcePathDetectionDFS(graph, source);
-        for (String v : (String[]) new String[]{"i1", "i2", "i3", "i4", "i5", "i6"}) {
+
+        for (String v : graph.adj.keySet()) {
             boolean hasPath = graphProcessor.hasPathTo(v);
             System.out.println("is there a path from " + source + " to " + v + "? " + hasPath);
         }
