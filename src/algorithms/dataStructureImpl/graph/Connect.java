@@ -28,7 +28,7 @@ public class Connect {
         System.out.println("Visit " + v);
         marked.put(v, true);
         if (v.equalsIgnoreCase(dest)) return true;
-        for (String s : graph.getAdj(v)) {
+        for (String s : graph.adj(v)) {
             if (!isVisited(s)) {
                 boolean result = depthFirstSearch(graph, s, dest);
                 if (result == true) return true;

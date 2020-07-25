@@ -5,7 +5,7 @@ import java.util.*;
 public class GraphImpl<E> {
     Map<E, List<E>> adj = new HashMap<>();  //vertex - adj_list map
 
-    public List<E> getAdj(E e) {
+    public List<E> adj(E e) {
         return adj.get(e);
     }
 
