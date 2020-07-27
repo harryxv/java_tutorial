@@ -1,7 +1,8 @@
-package algorithms.dataStructureImpl.graph;
+package algorithms.dataStructureImpl;
 
 import java.util.*;
 
+//Directed Graph representation
 public class Graph<E> {
     private Map<E, List<E>> adj;
 
