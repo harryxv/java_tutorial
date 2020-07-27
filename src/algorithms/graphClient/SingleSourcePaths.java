@@ -9,6 +9,8 @@ import java.util.*;
  * Is there a path from s to any given target vertex v?
  * if so, find such a path
  */
+
+//this is fundamental to graph processing
 public class SingleSourcePaths {
     private String s;
     private Map<String, Boolean> marked = new HashMap<>();

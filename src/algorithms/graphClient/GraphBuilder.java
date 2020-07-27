@@ -10,31 +10,37 @@ import java.util.stream.IntStream;
 public class GraphBuilder {
 
     //for each nested array: String[], the first element is the source, all the rest are the dependents of the source
-    public static void buildGraph(Graph<String> graph, String[][] grid) {
+    public static Graph<String> buildGraph(String[][] grid) {
+        Graph<String> graph = new Graph<>();
         for (String[] s : grid) {
             for (int i = 1; i < s.length; i++) {
                 graph.addEdge(s[0], s[i]);
             }
         }
+        return graph;
     }
 
 
-    public static void buildGraphForRobot(Graph<String> graph, String[][] grid, int M, int N) {
+    public static Graph<String> buildGraphForRobot(String[][] grid, int M, int N) {
         //for each grid[i][j], the grid[i][j+1], grid[i+1][j] should be its dependent
+        Graph<String> graph = new Graph<>();
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 if (j < N - 1) graph.addEdge(grid[i][j], grid[i][j + 1]);
                 if (i < M - 1) graph.addEdge(grid[i][j], grid[i + 1][j]);
             }
         }
+        return graph;
     }
 
-    public static void convertMatrixToGraph(Graph<Integer> graph, int[][] arr, int N) {
+    public static Graph<Integer> convertMatrixToGraph(int[][] arr, int N) {
+        Graph<Integer> graph = new Graph<>();
         IntStream.range(0, N).forEach(i -> {
             IntStream.range(0, N).forEach(j -> {
                 if (arr[i][j] == 1) graph.addEdge(i, j);
             });
         });
+        return graph;
     }
 
     //how to build graph from various format of data source
@@ -46,8 +52,7 @@ public class GraphBuilder {
                 {"i6", "i7"},
                 {"i7", "i5"},
         };
-        Graph<String> graph = new Graph<>();
-        buildGraph(graph, pairs);
+        Graph<String> graph = buildGraph(pairs);
 
         for (String s : graph.v()) {
             System.out.println(s + ": " + graph.adj(s));
@@ -60,8 +65,7 @@ public class GraphBuilder {
                 {1, 1, 0}
         };
         int N = 3;
-        Graph<Integer> integerGraph = new Graph<>();
-        convertMatrixToGraph(integerGraph, arr, 3);
+        Graph<Integer> integerGraph = convertMatrixToGraph(arr, 3);
 
         for (int i = 0; i < N; i++) {
             System.out.println(i + " -> " + integerGraph.adj(i));
