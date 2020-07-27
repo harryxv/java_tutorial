@@ -3,6 +3,7 @@ package algorithms.graphClient;
 import algorithms.dataStructure.Graph;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * Given a graph and a source vertex s.
@@ -16,26 +17,44 @@ public class SingleSourcePaths {
     private Map<String, Boolean> marked = new HashMap<>();
     private Map<String, String> pathTo = new HashMap<>();
 
-    public SingleSourcePaths(Graph<String> graph, String s) {
+    public boolean isMarked(String v) {
+        if (marked.containsKey(v)) return marked.get(v);
+        return false;
+    }
+
+    public void mark(String v) {
+        marked.put(v, true);
+    }
+
+    public void preProcess(String[][] arrs, String s) {
         this.s = s;
-        for (String v : graph.v()) {
-            marked.put(v, false);
-        }
+        Graph<String> graph = buildGraph(arrs);
         dfs(graph, s);
     }
 
-    private void dfs(Graph<String> graph, String v0) {
-        marked.put(v0, true); //mark visit
-        for (String v : graph.adj(v0)) {
-            if (!marked.get(v)) {
-                pathTo.put(v, v0);
+    private Graph<String> buildGraph(String[][] arrs) {
+        Graph<String> graph = new Graph<>();
+        for (String[] arr : arrs) {
+            IntStream.range(1, arr.length).forEach(e -> {
+                graph.addEdge(arr[0], arr[e]);
+            });
+        }
+        return graph;
+    }
+
+    private void dfs(Graph<String> graph, String s) {
+        mark(s);
+        for (String v : graph.adj(s)) {
+            if (!isMarked(v)) {
+                pathTo.put(v, s);
                 dfs(graph, v);
             }
         }
     }
 
     public boolean hasPathTo(String v) {
-        return marked.get(v);
+        if (marked.containsKey(v)) return marked.get(v);
+        return false;
     }
 
     public Iterable<String> pathTo(String v) {
@@ -46,36 +65,28 @@ public class SingleSourcePaths {
         return stack;
     }
 
-    //can be a part of Constructor, or build a graph
-    public static void buildGraph(Graph<String> graph, String[][] grid, int M, int N) {
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                if (j + 1 < N) graph.addEdge(grid[i][j], grid[i][j + 1]);
-                if (i + 1 < M) graph.addEdge(grid[i][j], grid[i + 1][j]);
-            }
-        }
+    public Iterable<String> findPath(String v) {
+        if (!isMarked(v)) return null;
+        return pathTo(v);
     }
 
     public static void main(String[] args) {
-        //step1, build graph
-
-        String[][] arr = {
+        //input array,
+        String[][] arrs = {
                 {"i1", "i2", "i3"},
                 {"i4", "i5", "i6"},
                 {"i7", "i8", "i9"}
         };
-        int M = 3, N = 3;
-        Graph<String> graph = new Graph<>();
-        buildGraph(graph, arr, 3, 3);
         String s = "i1";
-        SingleSourcePaths processor = new SingleSourcePaths(graph, s);
-        for (String[] strings : arr) {
-            for (String string : strings) {
-                if (processor.hasPathTo(string)) {
-                    System.out.println("from " + s + " to " + string + ": " + processor.pathTo(string));
-                } else {
-                    System.out.println("has not path " + "from " + s + " to " + string);
-                }
+
+        SingleSourcePaths graphClient = new SingleSourcePaths();
+        graphClient.preProcess(arrs, s);
+        for (String[] arr : arrs) {
+            for (String v : arr) {
+                if (graphClient.hasPathTo(v))
+                    System.out.println("from " + s + " to " + v + ": " + graphClient.pathTo(v));
+                else
+                    System.out.println("from " + s + " to " + v + ": No such a path");
             }
         }
     }

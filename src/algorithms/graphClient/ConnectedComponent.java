@@ -1,26 +1,11 @@
 package algorithms.graphClient;
 
 import algorithms.dataStructure.Graph;
-
 import java.util.*;
-
-/**
- * Given a graph
- * find connected components
- */
-//this is fundamental graph processing
-
-//use DFS to generate connected components
-//with this connected components, we can
-//1, for any vertex, find which components it belongs to
-//2, get the longest connected component
 
 public class ConnectedComponent {
     Map<String, List<String>> components = new HashMap<>();
     Map<String, Boolean> marked = new HashMap<>();
-
-    public ConnectedComponent() {
-    }
 
     public void mark(String v) {
         marked.put(v, true);
@@ -28,6 +13,14 @@ public class ConnectedComponent {
 
     public boolean isMarked(String v) {
         return marked.containsKey(v);
+    }
+
+    public void solution(String[][] arrays) {
+        Graph<String> graph = buildGraph(arrays);
+        processGraph(graph);
+        components.forEach((k, v) -> {
+            System.out.println("component " + k + " contains " + v);
+        });
     }
 
     //each Sting[] represents a dependency chain
@@ -40,7 +33,6 @@ public class ConnectedComponent {
         }
         return graph;
     }
-
 
     public void processGraph(Graph<String> graph) {
         Set<String> vertices = graph.v();
@@ -55,10 +47,6 @@ public class ConnectedComponent {
 
     /**
      * depth first search to go through each vertex that connected
-     *
-     * @param graph
-     * @param vertex
-     * @param component
      */
     private void dfs(Graph<String> graph, String vertex, List<String> component) {
         mark(vertex);
@@ -68,11 +56,8 @@ public class ConnectedComponent {
         });
     }
 
-    //build graph
-    //run graph client constructor method.
-    //run client API to get required query
+    //testing method
     public static void main(String[] args) {
-
         String[][] pairs = {
                 {"i1", "i2", "i3", "i4"},
                 {"i2", "i3"},
@@ -82,10 +67,6 @@ public class ConnectedComponent {
         };
 
         ConnectedComponent client = new ConnectedComponent();
-        Graph<String> graph = client.buildGraph(pairs);
-        client.processGraph(graph);
-        client.components.forEach((k, v) -> {
-            System.out.println("component " + k + " contains " + v);
-        });
+        client.solution(pairs);
     }
 }
