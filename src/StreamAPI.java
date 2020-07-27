@@ -1,5 +1,3 @@
-import model.Person;
-
 import java.util.LinkedList;
 import java.util.List;
 

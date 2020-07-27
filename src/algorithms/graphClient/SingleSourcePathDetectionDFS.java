@@ -1,6 +1,6 @@
-package algorithms.dataStructureImpl.graph;
+package algorithms.graphClient;
 
-import algorithms.dataStructureImpl.Graph;
+import algorithms.dataStructure.Graph;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package algorithms.dataStructureImpl.graph;
+package algorithms.graphClient;
 
 import java.util.*;
 import java.util.stream.IntStream;

@@ -1,4 +1,4 @@
-package algorithms.dataStructureImpl;
+package algorithms.dataStructure;
 
 import java.util.LinkedList;
 import java.util.Queue;

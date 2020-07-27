@@ -1,8 +1,6 @@
-package algorithms.dataStructureImpl.graph;
+package algorithms.graphClient;
 
-import algorithms.dataStructureImpl.Graph;
-
-import java.util.*;
+import algorithms.dataStructure.Graph;
 
 
 public class GraphBuilder {

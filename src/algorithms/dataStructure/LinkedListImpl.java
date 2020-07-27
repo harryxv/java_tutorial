@@ -1,4 +1,4 @@
-package algorithms.dataStructureImpl;
+package algorithms.dataStructure;
 
 public class LinkedListImpl<E> {
 
