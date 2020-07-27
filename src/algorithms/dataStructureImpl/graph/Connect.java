@@ -13,10 +13,10 @@ import java.util.*;
 
 //DFS implementation
 public class Connect {
-    private GraphImpl<String> graph;
+    private Graph<String> graph;
     private Map<String, Boolean> marked = new HashMap<>();
 
-    public Connect(GraphImpl<String> graph) {
+    public Connect(Graph<String> graph) {
         this.graph = graph;
     }
 
@@ -24,7 +24,7 @@ public class Connect {
         return marked.containsKey(v);
     }
 
-    private boolean depthFirstSearch(GraphImpl<String> graph, String v, String dest) {
+    private boolean depthFirstSearch(Graph<String> graph, String v, String dest) {
         System.out.println("Visit " + v);
         marked.put(v, true);
         if (v.equalsIgnoreCase(dest)) return true;
@@ -42,20 +42,16 @@ public class Connect {
     }
 
     public static void main(String[] args) {
-        GraphImpl<String> G = new GraphImpl<>();
+        Graph<String> G = new Graph<>();
         String[][] pairs = {
                 {"i1", "i2"},
                 {"i3", "i4"},
                 {"i5", "i6"},
                 {"i3", "i6"}
         };
-//        G.addEdge("i1", "i2");
-//        G.addEdge("i3", "i4");
-//        G.addEdge("i5", "i6");
-//        G.addEdge("i3", "i6");
         for (String[] pair : pairs) {
-            for(int i=1;i<pair.length;i++){
-               G.addEdge(pair[0],pair[i]);
+            for (int i = 1; i < pair.length; i++) {
+                G.addEdge(pair[0], pair[i]);
             }
         }
         Connect connect = new Connect(G);

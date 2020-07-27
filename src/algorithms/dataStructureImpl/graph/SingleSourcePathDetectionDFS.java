@@ -3,7 +3,7 @@ package algorithms.dataStructureImpl.graph;
 import java.util.*;
 
 public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<String> {
-    private GraphImpl<String> graph;
+    private Graph<String> graph;
     private String source;
     //aux
     private Map<String, Boolean> marked = new HashMap<>();
@@ -12,7 +12,7 @@ public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<S
     public SingleSourcePathDetectionDFS() {
     }
 
-    public SingleSourcePathDetectionDFS(GraphImpl g, String source) {
+    public SingleSourcePathDetectionDFS(Graph g, String source) {
         graph = g;
         this.source = source;
         dfs(g, source);
@@ -28,7 +28,7 @@ public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<S
      * @param graph
      * @param s
      */
-    private void dfs(GraphImpl<String> graph, String s) {
+    private void dfs(Graph<String> graph, String s) {
         marked.put(s, true);
         for (String v : graph.adj(s)) {
             if (!isMarked(v)) dfs(graph, v);
@@ -47,7 +47,7 @@ public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<S
 
 
     public static void main(String[] args) {
-        GraphImpl<String> graph = new GraphImpl<>();
+        Graph<String> graph = new Graph<>();
         String[][] pairs = {
                 {"i1", "i2"},
                 {"i3", "i4"},
@@ -64,7 +64,7 @@ public class SingleSourcePathDetectionDFS implements SingleSourcePathDetection<S
 
         SingleSourcePathDetectionDFS graphProcessor = new SingleSourcePathDetectionDFS(graph, source);
 
-        for (String v : graph.adj.keySet()) {
+        for (String v : graph.v()) {
             boolean hasPath = graphProcessor.hasPathTo(v);
             System.out.println("is there a path from " + source + " to " + v + "? " + hasPath);
         }

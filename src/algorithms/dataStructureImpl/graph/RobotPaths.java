@@ -1,4 +1,4 @@
-package algorithms.challenges;
+package algorithms.dataStructureImpl.graph;
 
 import java.util.*;
 
@@ -6,24 +6,16 @@ public class RobotPaths {
     private static class Graph {
         Map<Integer, List<Integer>> adj = new HashMap<>();
 
-        public Graph(Integer[][] grid) {
-            int ROW = grid.length, COL = grid[0].length;
-            for (int i = 0; i < ROW; i++) {//parse row
-                for (int j = 0; j < COL; j++) {
-                    Integer v = grid[i][j];
-                    if (j < COL - 1) {//add adj_right
-                        Integer rightChild = grid[i][j + 1];
-                        this.addChild(v, rightChild);
-                    }
-                    if (i < ROW - 1) {//add ajd below
-                        Integer downChild = grid[i + 1][j];
-                        this.addChild(v, downChild);
-                    }
+        public Graph(Integer[][] grid, int M, int N) {
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (j < N - 1) this.addEdge(grid[i][j], grid[i][j + 1]);
+                    if (i < M - 1) this.addEdge(grid[i][j], grid[i + 1][j]);
                 }
             }
         }
 
-        private void addChild(Integer v, Integer child) {
+        private void addEdge(Integer v, Integer child) {
             if (!adj.containsKey(v)) adj.put(v, new LinkedList<Integer>());
             if (!adj.containsKey(child)) adj.put(child, new LinkedList<Integer>());
             adj.get(v).add(child);
@@ -72,9 +64,11 @@ public class RobotPaths {
 
     public static void main(String[] args) {
         Integer[][] grid = {
-                {1, 2, 3}, {4, 5, 6}, {7, 8, 9}
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
         };
-        Graph g = new Graph(grid);
+        Graph g = new Graph(grid, 3, 3);
         g.adj.forEach((k, v) -> {
             System.out.println(k + "---" + v);
         });

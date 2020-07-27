@@ -1,4 +1,4 @@
-package algorithms.challenges;
+package algorithms.dataStructureImpl.graph;
 
 import java.util.*;
 
