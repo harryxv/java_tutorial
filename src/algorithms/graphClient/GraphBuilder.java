@@ -43,6 +43,17 @@ public class GraphBuilder {
         return graph;
     }
 
+    public static Graph<Integer> buildGraphWithImplicitSource(int[][] arrs) {
+        Graph<Integer> graph = new Graph<>();
+        for (int i = 0; i < arrs.length; i++) {
+            int[] arr = arrs[i];
+            for (int j : arr) {
+                graph.addEdge(i + 1, j);
+            }
+        }
+        return graph;
+    }
+
     //how to build graph from various format of data source
     public static void main(String[] args) {
         String[][] pairs = {
@@ -69,6 +80,13 @@ public class GraphBuilder {
 
         for (int i = 0; i < N; i++) {
             System.out.println(i + " -> " + integerGraph.adj(i));
+        }
+
+        System.out.println("-----------print implicit graph builder-----------");
+        int[][] adjList = {{2, 4}, {1, 3}, {2, 4}, {1, 3}};
+        Graph<Integer> implicitGraph = buildGraphWithImplicitSource(adjList);
+        for (int i = 1; i < adjList.length + 1; i++) {
+            System.out.println(i + " -> " + implicitGraph.adj(i));
         }
     }
 }

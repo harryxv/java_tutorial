@@ -11,7 +11,10 @@ public class SortHashMapByValue {
     List<Map.Entry<String, Integer>> sortByValue(HashMap<String, Integer> hm) {
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(hm.entrySet());
         Collections.sort(entryList, (o1, o2) -> o2.getValue().compareTo(o1.getValue()) == 0 ? o1.getKey().compareTo(o2.getKey()) : o2.getValue().compareTo(o1.getValue()));
+        Collections.sort(entryList, Map.Entry.comparingByValue((v1,v2)->v2.compareTo(v1)));
+
         return entryList;
+
     }
 
     Queue<Map.Entry<String, Integer>> sortByValueToPQ(HashMap<String, Integer> hm) {
