@@ -15,12 +15,9 @@ public class ConnectedComponent {
         return marked.containsKey(v);
     }
 
-    public void solution(String[][] arrays) {
+    public void preProcess(String[][] arrays) {
         Graph<String> graph = buildGraph(arrays);
         processGraph(graph);
-        components.forEach((k, v) -> {
-            System.out.println("component " + k + " contains " + v);
-        });
     }
 
     //each Sting[] represents a dependency chain
@@ -67,6 +64,11 @@ public class ConnectedComponent {
         };
 
         ConnectedComponent client = new ConnectedComponent();
-        client.solution(pairs);
+        Graph<String> graph = client.buildGraph(pairs);
+        client.preProcess(pairs);
+        client.components.forEach((k, v) -> {
+            System.out.println("component " + k + " contains " + v);
+        });
+
     }
 }

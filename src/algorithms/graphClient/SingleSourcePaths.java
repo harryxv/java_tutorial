@@ -65,13 +65,7 @@ public class SingleSourcePaths {
         return stack;
     }
 
-    public Iterable<String> findPath(String v) {
-        if (!isMarked(v)) return null;
-        return pathTo(v);
-    }
-
     public static void main(String[] args) {
-        //input array,
         String[][] arrs = {
                 {"i1", "i2", "i3"},
                 {"i4", "i5", "i6"},
