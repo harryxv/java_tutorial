@@ -38,6 +38,9 @@ public class BuildGraphFromNode {
             return root;
         }
 
+
+        //dfs:depth first search.
+        //it will start from top, then implicitly using call stack to call all its dependecicie,
         public void dfs(Node dest, Node src) {
             nodes.put(dest.val, dest);
             marked.put(dest, true);
