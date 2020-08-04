@@ -16,7 +16,7 @@ public class StackIteratorString {
             System.out.print(character);
         }
         System.out.println();
-        stack.stream().forEach(System.out::print);
+        stack.forEach(System.out::print);
         System.out.println();
         Iterator<Character> iter = stack.iterator();
         while (iter.hasNext()) {
