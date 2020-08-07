@@ -1,6 +1,6 @@
 package algorithms.challenges;
 import java.util.*;
-class Solution {
+public class CycleDetection {
     class Graph{
         Map<Integer,List<Integer>> adj = new HashMap<>();
         public List<Integer> adj(Integer i){
@@ -56,7 +56,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        CycleDetection solution = new CycleDetection();
         int[][] pre = {
                 {0,1},
                 {1,0}
