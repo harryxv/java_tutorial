@@ -1,8 +1,6 @@
-package concurrent;
+package concurrency;
 
 //two ways to direct control thread
-
-import java.util.stream.IntStream;
 
 //example: count from 1 to 100 inclusive
 public class DirectControlThreadManagement {

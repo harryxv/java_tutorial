@@ -1,4 +1,4 @@
-public class Person implements Comparable<Person> {
+public class Person implements Comparable<Person>, ReadonlyPerson {
     public enum Sex {
         MALE, FEMALE;
 
@@ -9,20 +9,42 @@ public class Person implements Comparable<Person> {
         }
     }
 
-    String name;
-    Sex gender;
-    int age;
 
+    private String name;
+    private Sex gender;
+    private int age;
+
+    public Person(String name, Sex gender, int age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    @Override
     public int getAge() {
         return age;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public Sex getGender() {
         return gender;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(Sex gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -33,10 +55,8 @@ public class Person implements Comparable<Person> {
     public Person() {
     }
 
-    public Person(String name, Sex gender, int age) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
+    public ReadonlyPerson find(String name) {
+        return null;
     }
 
 }

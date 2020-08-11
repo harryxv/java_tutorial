@@ -1,4 +1,4 @@
-package util;
+package algorithms.challenges;
 
 import java.util.*;
 
@@ -12,8 +12,6 @@ public class StringUtils {
     }
 
     /**
-     * get longest common prefix
-     *
      * @param s1
      * @param s2
      * @return

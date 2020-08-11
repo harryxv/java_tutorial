@@ -1,4 +1,4 @@
-package concurrent;
+package concurrency;
 
 import java.util.stream.IntStream;
 

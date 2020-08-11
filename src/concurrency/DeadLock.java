@@ -1,4 +1,4 @@
-package concurrent;
+package concurrency;
 
 public class DeadLock {
     static class Friend {

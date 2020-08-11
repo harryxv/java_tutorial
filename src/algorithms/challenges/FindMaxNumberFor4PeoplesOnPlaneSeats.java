@@ -1,9 +1,9 @@
-package practice;
+package algorithms.challenges;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class Test {
+public class FindMaxNumberFor4PeoplesOnPlaneSeats {
     public int solution(int N, String S) {
         if (S.isEmpty()) {
             return 2 * N;
@@ -29,7 +29,7 @@ public class Test {
             occupSeats.get(seatRow).add(seatChar);
         }
 
-        //go through each, find avialbe seats and check whether they are availabe for 4-person
+        //go through each, find available seats and check whether they are available for 4-person
         for (int i = 1; i < N + 1; i++) {
             Set<Character> rowOccupSeats = occupSeats.get(i);
             if (rowOccupSeats.size() > 6) {//check remain seats number
@@ -68,8 +68,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        Test test = new Test();
-        int num = test.solution(2, "");
+        FindMaxNumberFor4PeoplesOnPlaneSeats client = new FindMaxNumberFor4PeoplesOnPlaneSeats();
+        int num = client.solution(2, "");
         System.out.println(num);
     }
 }
